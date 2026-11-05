@@ -1,4 +1,8 @@
 /* Creatory Contact Widget v1.1 | Approved visual styles | 2026-11-05 */
+/* <!-- Hide Ringostat visual phone button -->*/
+.rngst_phone_button {
+  display: none !important;
+}
 #creatory-contact-widget {
   --ccw-primary: #0084ad;
   --ccw-dark: #092c3c;
