@@ -1,0 +1,295 @@
+/* Creatory Contact Widget v1.1 | Approved visual styles | 2026-11-05 */
+#creatory-contact-widget {
+  --ccw-primary: #0084ad;
+  --ccw-dark: #092c3c;
+  --ccw-bg: #ffffff;
+  --ccw-border: #e4eaf0;
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2147483000;
+  font-family: Arial, sans-serif;
+  color: var(--ccw-dark);
+}
+
+#creatory-contact-widget * {
+  box-sizing: border-box;
+}
+
+#creatory-contact-widget .ccw-toggle {
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ccw-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: auto;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(0, 80, 110, .27);
+  transition: transform .2s, background .2s;
+}
+
+#creatory-contact-widget .ccw-toggle:hover {
+  transform: scale(1.06);
+  background: #006b90;
+}
+
+#creatory-contact-widget .ccw-panel {
+  position: absolute;
+  bottom: 78px;
+  left: 0;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  padding: 20px;
+  background: var(--ccw-bg);
+  border: 1px solid var(--ccw-border);
+  border-radius: 18px;
+  box-shadow: 0 12px 45px rgba(0, 35, 55, .18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .2s, transform .2s, visibility .2s;
+  pointer-events: none;
+}
+
+#creatory-contact-widget.ccw-open .ccw-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#creatory-contact-widget .ccw-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#creatory-contact-widget .ccw-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#creatory-contact-widget .ccw-close {
+  border: 0;
+  background: #f0f5f8;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--ccw-dark);
+}
+
+#creatory-contact-widget .ccw-description {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 17px;
+  color: #526775;
+}
+
+#creatory-contact-widget .ccw-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  border: 1px solid var(--ccw-border);
+  border-radius: 12px;
+  background: #f7fafc;
+  color: var(--ccw-dark);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  transition: background .2s, border-color .2s;
+}
+
+#creatory-contact-widget .ccw-action:hover {
+  background: #edf7fb;
+  border-color: #8bc5dc;
+}
+
+#creatory-contact-widget .ccw-action:focus-visible,
+#creatory-contact-widget button:focus-visible {
+  outline: 3px solid #ffbd46;
+  outline-offset: 2px;
+}
+
+#creatory-contact-widget .ccw-action svg {
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+  color: var(--ccw-primary);
+}
+
+#creatory-contact-widget .ccw-action strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#creatory-contact-widget .ccw-action small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #637985;
+}
+
+#creatory-contact-widget .ccw-footer {
+  text-align: center;
+  font-size: 11px;
+  color: #8a9aa5;
+  margin-top: 13px;
+}
+@media (max-width: 767px) {
+  #creatory-contact-widget {
+    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  #creatory-contact-widget .ccw-toggle {
+    width: 58px;
+    height: 58px;
+  }
+
+  #creatory-contact-widget .ccw-panel {
+    bottom: 72px;
+    width: min(340px, calc(100vw - 32px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #creatory-contact-widget .ccw-panel,
+  #creatory-contact-widget .ccw-toggle,
+  #creatory-contact-widget .ccw-action {
+    transition: none;
+  }
+}
+
+/* v1.1 approved animation */
+/* 1. Плавне відкриття контактної панелі */
+#creatory-contact-widget .ccw-panel {
+  transform: translateY(16px) scale(.97);
+  transform-origin: bottom left;
+  transition:
+    opacity .3s ease,
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    visibility .35s;
+  max-height: calc(100vh - 125px);
+  max-height: calc(100dvh - 125px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#creatory-contact-widget.ccw-open .ccw-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* 2. Послідовна поява кнопок */
+#creatory-contact-widget .ccw-action {
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+#creatory-contact-widget:not(.ccw-open) .ccw-action {
+  opacity: 0;
+  transform: translateY(9px);
+}
+
+#creatory-contact-widget.ccw-open .ccw-action {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#creatory-contact-widget.ccw-open
+.ccw-action:nth-of-type(1) {
+  transition-delay: .06s;
+}
+
+#creatory-contact-widget.ccw-open
+.ccw-action:nth-of-type(2) {
+  transition-delay: .12s;
+}
+
+#creatory-contact-widget.ccw-open
+.ccw-action:nth-of-type(3) {
+  transition-delay: .18s;
+}
+
+/* 3. Пульсування основної кнопки */
+#creatory-contact-widget .ccw-toggle {
+  position: relative;
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+#creatory-contact-widget .ccw-toggle::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid rgba(0,132,173,.35);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ccwPulse 3.5s ease-out infinite;
+}
+
+@keyframes ccwPulse {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  68% {
+    opacity: .8;
+  }
+  88% {
+    transform: scale(1.24);
+    opacity: 0;
+  }
+}
+
+/* 4. При відкритому меню пульсація зупиняється */
+#creatory-contact-widget.ccw-open
+.ccw-toggle::before {
+  animation: none;
+  opacity: 0;
+}
+
+/* 5. Основна кнопка реагує на відкриття */
+#creatory-contact-widget.ccw-open .ccw-toggle {
+  background: #006b90;
+  transform: scale(.94);
+}
+
+/* 6. Hover для пунктів меню */
+@media (hover: hover) {
+  #creatory-contact-widget .ccw-action:hover {
+    transform: translateX(3px);
+  }
+}
+
+/* 7. Доступність: зменшення анімацій */
+@media (prefers-reduced-motion: reduce) {
+  #creatory-contact-widget .ccw-panel,
+  #creatory-contact-widget .ccw-action,
+  #creatory-contact-widget .ccw-toggle {
+    transition: none !important;
+  }
+
+  #creatory-contact-widget .ccw-toggle::before {
+    animation: none !important;
+  }
+}
